@@ -128,17 +128,33 @@ const App = () => {
 
   const [score, setScore] = useState(0);
 
+  
   const changeChar = () => {
-    
-  };
-
-  const scoreHandler = (e) => {
    
+  };
+  changeChar()
+  const scoreHandler = (e) => {
+    console.log(currChar.name)
+    if(e.target.innerText===currChar.name){
+      setScore(score+1)
+    }else{
+      score>0?setScore(score-1):setScore(0)
+    }
   };
 
   useEffect(() => {
-   
-  });
+    let random = Math.floor(Math.random()*100/15)
+    // setCurrChar(()=>{
+    //   return characters[random]
+    // })
+    setCurrChar({
+      name : characters[random].name,
+      role : characters[random].role,
+      abilities: characters[random].abilities,
+      options: [characters[random+1],
+      characters[random+2],characters[random+3],
+      characters[random]]})
+  },[]);
   return (
     <div id="main">
       <div className="container">
@@ -150,7 +166,7 @@ const App = () => {
           {currChar.abilities.join()}
           <div className="options">
             {currChar.options.map((option) => (
-              <button   onClick={scoreHandler}>
+              <button onClick={scoreHandler}>
                 {option.name}
               </button>
             ))}
@@ -162,3 +178,4 @@ const App = () => {
 };
 
 export default App;
+
