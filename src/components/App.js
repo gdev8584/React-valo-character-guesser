@@ -128,22 +128,21 @@ const App = () => {
 
   const [score, setScore] = useState(0);
 
-  
   const changeChar = () => {
    
   };
   changeChar()
   const scoreHandler = (e) => {
-    console.log(currChar.name)
     if(e.target.innerText===currChar.name){
       setScore(score+1)
     }else{
-      score>0?setScore(score-1):setScore(0)
+      setScore(score-1)
     }
   };
+  
 
   useEffect(() => {
-    let random = Math.floor(Math.random()*100/15)
+    let random =Math.floor(Math.random()*100/15)
     // setCurrChar(()=>{
     //   return characters[random]
     // })
@@ -154,7 +153,7 @@ const App = () => {
       options: [characters[random+1],
       characters[random+2],characters[random+3],
       characters[random]]})
-  },[]);
+  },[score]);
   return (
     <div id="main">
       <div className="container">
